@@ -62,6 +62,11 @@ inline std::wstring encodeURL(const std::string &s) {
   }
   return wide(out.str());
 }
+inline std::wstring numeric(double value) {
+  std::wostringstream out;
+  out << std::setprecision(10) << value;
+  return out.str();
+}
 class App {
 public:
   HINSTANCE module;
@@ -518,7 +523,7 @@ public:
     combo(settings, {L"Sequential", L"Random · no repeats per cycle"}, 140,
           s.random ? 1 : 0, 24, 424, 340, 0);
     label(settings, L"Seconds per word", 390, 424, 150, 24, 0);
-    edit(settings, std::to_wstring(int(s.interval)), 141, 552, 422, 100, 28, 0);
+    edit(settings, numeric(s.interval), 141, 552, 422, 100, 28, 0);
     check(settings, L"Play Favorites only within the selected ranges", 142,
           s.favoritesOnly, 24, 472, 625, 0);
     button(settings, L"Apply study settings", 143, 24, 514, 195, 30, 0);
@@ -539,9 +544,9 @@ public:
       check(settings, toggles[i].first, 200 + i, toggles[i].second,
             24 + (i % 2) * 340, 115 + (i / 2) * 42, 330, 1);
     label(settings, L"Font size (9–18 pt)", 24, 306, 225, 24, 1);
-    edit(settings, std::to_wstring(int(s.fontSize)), 210, 264, 302, 90, 28, 1);
+    edit(settings, numeric(s.fontSize), 210, 264, 302, 90, 28, 1);
     label(settings, L"Width (80–600)", 390, 306, 180, 24, 1);
-    edit(settings, std::to_wstring(int(s.width)), 211, 574, 302, 90, 28, 1);
+    edit(settings, numeric(s.width), 211, 574, 302, 90, 28, 1);
     std::vector<std::wstring> presets{L"Ocean", L"Sage",     L"Plum",
                                       L"Amber", L"Graphite", L"Custom"};
     int pi = 0;

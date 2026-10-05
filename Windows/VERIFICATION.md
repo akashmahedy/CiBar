@@ -4,7 +4,7 @@ The Windows release is **1.1.0-preview.1**, intended for Windows 11 x64. The Mac
 
 ## Automated coverage
 
-The portable C++ tests run locally on macOS and in Windows CI. They check all 5400 entries and original serials, multilevel inclusive ranges, monotonic countdown, overlapping card/sleep/manual pause, delay changes, sequence/previous wrapping, random cycles and cycle boundaries, Favorites intersection, jump constraints, empty selection, CSV quotes/BOM/Unicode, partial examples, invalid serials, malformed imports, atomic persistence, unsupported backups and recovery-write failure.
+The portable C++ tests run locally on macOS and in Windows CI. They check all 5400 entries and original serials, multilevel inclusive ranges, monotonic countdown, overlapping card/sleep/manual pause, delay changes, sequence/previous wrapping, random cycles and cycle boundaries, Favorites intersection, jump constraints, empty selection, CSV quotes/BOM/Unicode, partial examples, invalid serials, malformed imports, atomic persistence, unsupported backups, invalid UTF-8 and fractional integer fields, recovery-write failure, mid-restore write failure, restored attribution persistence and interrupted-restore rollback on restart.
 
 The compatibility fixture is **synthetic**, exported by the existing Mac `Sources/Model.swift`, with examples, custom words, Favorites and paused progress. Windows reads and re-exports it; the actual Mac Codable model reads that result. The shared date uses seconds since 2001-01-01, matching Swift. No personal backup is committed or uploaded.
 

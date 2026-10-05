@@ -22,7 +22,7 @@ Library searches Hanzi/Pinyin/English and can filter Favorites. Open a card to f
 
 Local data: `%LOCALAPPDATA%\CiBar\`. No background network calls, analytics or cloud sync. Dictionary/source links open public sites only on click.
 
-**Export backup / Restore backup** uses the same `CiBarBackup` version 1 format as Mac. Vocabulary, custom lists, settings, Favorites, random order and progress transfer; Windows pill position and login startup are local and do not transfer. Recovery backups are saved before restore; failed recovery writes block restore.
+**Export backup / Restore backup** uses the same `CiBarBackup` version 1 format as Mac. Vocabulary, custom lists, settings, Favorites, random order and progress transfer; Windows pill position and login startup are local and do not transfer. Recovery backups are saved before restore; failed recovery writes block restore. An interrupted restore is rolled back at the next startup. On small work areas or higher scaling, the native Settings/Card/Library scrollbars keep their controls accessible.
 
 Import UTF-8 CSV/TSV with `serial,hanzi,pinyin,english`; optional `example_hanzi,example_pinyin,example_english` must all be filled if an example is provided. Quote CSV commas. Invalid imports are rejected without changing the list.
 

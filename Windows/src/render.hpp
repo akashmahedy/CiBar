@@ -1,31 +1,232 @@
 #pragma once
 #include "core.hpp"
-#include <d3d11.h>
 #include <d2d1.h>
-#include <dwrite.h>
+#include <d3d11.h>
 #include <dcomp.h>
+#include <dwrite.h>
 #include <wrl/client.h>
 namespace cibar {
 using Microsoft::WRL::ComPtr;
-inline void hr(HRESULT result){if(FAILED(result))throw std::runtime_error("Windows graphics operation failed: "+std::to_string(unsigned(result)));}
-inline std::wstring wide(const std::string& text){if(text.empty())return {};int n=MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,text.data(),int(text.size()),nullptr,0);require(n>0,"Invalid UTF-8 text.");std::wstring out(n,L' ');MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,text.data(),int(text.size()),out.data(),n);return out;}
-inline std::string utf8(const std::wstring& text){if(text.empty())return {};int n=WideCharToMultiByte(CP_UTF8,WC_ERR_INVALID_CHARS,text.data(),int(text.size()),nullptr,0,nullptr,nullptr);require(n>0,"Invalid Unicode text.");std::string out(n,' ');WideCharToMultiByte(CP_UTF8,WC_ERR_INVALID_CHARS,text.data(),int(text.size()),out.data(),n,nullptr,nullptr);return out;}
-struct RGB{float r,g,b;};
-inline RGB hexColor(std::string h){unsigned n=unsigned(std::stoul(h,nullptr,16));return {float((n>>16)&255)/255,float((n>>8)&255)/255,float(n&255)/255};}
-inline RGB mix(RGB a,RGB b,float t){return {a.r*(1-t)+b.r*t,a.g*(1-t)+b.g*t,a.b*(1-t)+b.b*t};}
-struct Palette{RGB background,fill,text;};
-inline Palette palette(const Settings&s,bool dark){auto bg=hexColor(dark?"2B3035":"EFF2F4");std::map<std::string,std::string> colors{{"Ocean","528F9D"},{"Sage","699579"},{"Plum","9A79AE"},{"Amber","AF8947"},{"Graphite","858D95"}};auto tint=hexColor(colors.contains(s.preset)?colors[s.preset]:s.customColor);float strength=s.contrast=="Soft"?.14f:s.contrast=="Balanced"?.23f:.30f;return {bg,mix(bg,tint,strength),hexColor(dark?"F7FAFC":"17232A")};}
-inline RGB systemColor(int index){auto c=GetSysColor(index);return {GetRValue(c)/255.f,GetGValue(c)/255.f,GetBValue(c)/255.f};}
-class PillRenderer {
- ComPtr<ID3D11Device> gpu;ComPtr<IDCompositionDevice> comp;ComPtr<IDCompositionTarget> target;
- ComPtr<IDCompositionVisual> root,track,fill,text;ComPtr<IDCompositionRectangleClip> rootClip,fillClip;
- ComPtr<ID2D1Factory> d2d;ComPtr<IDWriteFactory> write;std::vector<ComPtr<IDCompositionSurface>> surfaces;
- float scale=1,height=28,width=260;Settings settings;
- void surface(ComPtr<IDCompositionVisual>& visual,RGB color,float alpha,const std::wstring* label=nullptr){ComPtr<IDCompositionSurface> s;UINT pw=UINT(std::ceil(width*scale)),ph=UINT(std::ceil(height*scale));hr(comp->CreateSurface(pw,ph,DXGI_FORMAT_B8G8R8A8_UNORM,DXGI_ALPHA_MODE_PREMULTIPLIED,&s));ComPtr<IDXGISurface> dx;POINT offset{};hr(s->BeginDraw(nullptr,__uuidof(IDXGISurface),reinterpret_cast<void**>(dx.GetAddressOf()),&offset));ComPtr<ID2D1RenderTarget> rt;auto props=D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT,D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM,D2D1_ALPHA_MODE_PREMULTIPLIED),96*scale,96*scale);hr(d2d->CreateDxgiSurfaceRenderTarget(dx.Get(),&props,&rt));rt->BeginDraw();rt->SetTransform(D2D1::Matrix3x2F::Translation(offset.x/scale,offset.y/scale));rt->Clear(D2D1::ColorF(0,0,0,0));ComPtr<ID2D1SolidColorBrush> brush;hr(rt->CreateSolidColorBrush(D2D1::ColorF(color.r,color.g,color.b,alpha),&brush));if(label){ComPtr<IDWriteTextFormat> font;hr(write->CreateTextFormat(L"Microsoft YaHei UI",nullptr,DWRITE_FONT_WEIGHT_MEDIUM,DWRITE_FONT_STYLE_NORMAL,DWRITE_FONT_STRETCH_NORMAL,float(settings.fontSize*96/72),L"zh-CN",&font));font->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);font->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);DWRITE_TRIMMING trim{DWRITE_TRIMMING_GRANULARITY_CHARACTER,0,0};ComPtr<IDWriteInlineObject> ellipsis;hr(write->CreateEllipsisTrimmingSign(font.Get(),&ellipsis));font->SetTrimming(&trim,ellipsis.Get());rt->DrawText(label->c_str(),UINT32(label->size()),font.Get(),D2D1::RectF(8,0,width-8,height),brush.Get());}else rt->FillRectangle(D2D1::RectF(0,0,width,height),brush.Get());auto drawResult=rt->EndDraw();auto surfaceResult=s->EndDraw();hr(drawResult);hr(surfaceResult);hr(visual->SetContent(s.Get()));surfaces.push_back(s);}
- public:
- void init(HWND hwnd){UINT flags=D3D11_CREATE_DEVICE_BGRA_SUPPORT;auto result=D3D11CreateDevice(nullptr,D3D_DRIVER_TYPE_HARDWARE,nullptr,flags,nullptr,0,D3D11_SDK_VERSION,&gpu,nullptr,nullptr);if(FAILED(result))hr(D3D11CreateDevice(nullptr,D3D_DRIVER_TYPE_WARP,nullptr,flags,nullptr,0,D3D11_SDK_VERSION,&gpu,nullptr,nullptr));ComPtr<IDXGIDevice> dx;hr(gpu.As(&dx));hr(DCompositionCreateDevice(dx.Get(),__uuidof(IDCompositionDevice),reinterpret_cast<void**>(comp.GetAddressOf())));hr(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,d2d.GetAddressOf()));hr(DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,__uuidof(IDWriteFactory),reinterpret_cast<IUnknown**>(write.GetAddressOf())));hr(comp->CreateTargetForHwnd(hwnd,TRUE,&target));hr(comp->CreateVisual(&root));hr(comp->CreateVisual(&track));hr(comp->CreateVisual(&fill));hr(comp->CreateVisual(&text));hr(root->AddVisual(track.Get(),FALSE,nullptr));hr(root->AddVisual(fill.Get(),TRUE,track.Get()));hr(root->AddVisual(text.Get(),TRUE,fill.Get()));hr(comp->CreateRectangleClip(&rootClip));hr(comp->CreateRectangleClip(&fillClip));hr(root->SetClip(rootClip.Get()));hr(fill->SetClip(fillClip.Get()));hr(target->SetRoot(root.Get()));}
- std::pair<float,float> measure(const std::wstring& label,const Settings&s,float dpi,float available){scale=dpi/96.f;settings=s;ComPtr<IDWriteTextFormat> font;hr(write->CreateTextFormat(L"Microsoft YaHei UI",nullptr,DWRITE_FONT_WEIGHT_MEDIUM,DWRITE_FONT_STYLE_NORMAL,DWRITE_FONT_STRETCH_NORMAL,float(s.fontSize*96/72),L"zh-CN",&font));font->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);ComPtr<IDWriteTextLayout> layout;hr(write->CreateTextLayout(label.c_str(),UINT32(label.size()),font.Get(),10000,100,&layout));DWRITE_TEXT_METRICS m;hr(layout->GetMetrics(&m));float cap=std::max(60.f,std::min(float(s.width),available));width=s.adaptiveWidth?std::min(cap,std::max(48.f,std::ceil(m.widthIncludingTrailingWhitespace)+16)):cap;height=std::max(28.f,std::ceil(m.height)+8);return {width,height};}
- void draw(const std::wstring& label,const Settings&s,bool dark,bool highContrast){settings=s;auto p=palette(s,dark);if(highContrast)p={systemColor(COLOR_WINDOW),systemColor(COLOR_HIGHLIGHT),systemColor(COLOR_WINDOWTEXT)};surfaces.clear();surface(track,p.background,(s.highlight||highContrast)?1.f:0.f);surface(fill,p.fill,s.showFill&&!highContrast?1.f:0.f);surface(text,p.text,1,&label);hr(rootClip->SetLeft(0.f));hr(rootClip->SetTop(0.f));hr(rootClip->SetRight(width*scale));hr(rootClip->SetBottom(height*scale));hr(rootClip->SetTopLeftRadiusX(6*scale));hr(rootClip->SetTopLeftRadiusY(6*scale));hr(rootClip->SetTopRightRadiusX(6*scale));hr(rootClip->SetTopRightRadiusY(6*scale));hr(rootClip->SetBottomLeftRadiusX(6*scale));hr(rootClip->SetBottomLeftRadiusY(6*scale));hr(rootClip->SetBottomRightRadiusX(6*scale));hr(rootClip->SetBottomRightRadiusY(6*scale));hr(fillClip->SetLeft(0.f));hr(fillClip->SetTop(0.f));hr(fillClip->SetBottom(height*scale));hr(comp->Commit());}
- void countdown(double fraction,double seconds,bool paused,bool reduced){float start=width*scale*float(fraction);if(!settings.showFill||paused||reduced||seconds<=0)hr(fillClip->SetRight(start));else{ComPtr<IDCompositionAnimation> animation;hr(comp->CreateAnimation(&animation));hr(animation->AddCubic(0,start,-start/float(seconds),0,0));hr(animation->End(seconds,0));hr(fillClip->SetRight(animation.Get()));}hr(comp->Commit());}
-};
+inline void hr(HRESULT result) {
+  if (FAILED(result))
+    throw std::runtime_error("Windows graphics operation failed: " +
+                             std::to_string(unsigned(result)));
 }
+inline std::wstring wide(const std::string &text) {
+  if (text.empty())
+    return {};
+  int n = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, text.data(),
+                              int(text.size()), nullptr, 0);
+  require(n > 0, "Invalid UTF-8 text.");
+  std::wstring out(n, L' ');
+  MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, text.data(),
+                      int(text.size()), out.data(), n);
+  return out;
+}
+inline std::string utf8(const std::wstring &text) {
+  if (text.empty())
+    return {};
+  int n = WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, text.data(),
+                              int(text.size()), nullptr, 0, nullptr, nullptr);
+  require(n > 0, "Invalid Unicode text.");
+  std::string out(n, ' ');
+  WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, text.data(),
+                      int(text.size()), out.data(), n, nullptr, nullptr);
+  return out;
+}
+struct RGB {
+  float r, g, b;
+};
+inline RGB hexColor(std::string h) {
+  unsigned n = unsigned(std::stoul(h, nullptr, 16));
+  return {float((n >> 16) & 255) / 255, float((n >> 8) & 255) / 255,
+          float(n & 255) / 255};
+}
+inline RGB mix(RGB a, RGB b, float t) {
+  return {a.r * (1 - t) + b.r * t, a.g * (1 - t) + b.g * t,
+          a.b * (1 - t) + b.b * t};
+}
+struct Palette {
+  RGB background, fill, text;
+};
+inline Palette palette(const Settings &s, bool dark) {
+  auto bg = hexColor(dark ? "2B3035" : "EFF2F4");
+  std::map<std::string, std::string> colors{{"Ocean", "528F9D"},
+                                            {"Sage", "699579"},
+                                            {"Plum", "9A79AE"},
+                                            {"Amber", "AF8947"},
+                                            {"Graphite", "858D95"}};
+  auto tint =
+      hexColor(colors.contains(s.preset) ? colors[s.preset] : s.customColor);
+  float strength = s.contrast == "Soft"       ? .14f
+                   : s.contrast == "Balanced" ? .23f
+                                              : .30f;
+  return {bg, mix(bg, tint, strength), hexColor(dark ? "F7FAFC" : "17232A")};
+}
+inline RGB systemColor(int index) {
+  auto c = GetSysColor(index);
+  return {GetRValue(c) / 255.f, GetGValue(c) / 255.f, GetBValue(c) / 255.f};
+}
+class PillRenderer {
+  ComPtr<ID3D11Device> gpu;
+  ComPtr<IDCompositionDevice> comp;
+  ComPtr<IDCompositionTarget> target;
+  ComPtr<IDCompositionVisual> root, track, fill, text;
+  ComPtr<IDCompositionRectangleClip> rootClip, fillClip;
+  ComPtr<ID2D1Factory> d2d;
+  ComPtr<IDWriteFactory> write;
+  std::vector<ComPtr<IDCompositionSurface>> surfaces;
+  float scale = 1, height = 28, width = 260;
+  Settings settings;
+  void surface(ComPtr<IDCompositionVisual> &visual, RGB color, float alpha,
+               const std::wstring *label = nullptr) {
+    ComPtr<IDCompositionSurface> s;
+    UINT pw = UINT(std::ceil(width * scale)),
+         ph = UINT(std::ceil(height * scale));
+    hr(comp->CreateSurface(pw, ph, DXGI_FORMAT_B8G8R8A8_UNORM,
+                           DXGI_ALPHA_MODE_PREMULTIPLIED, &s));
+    ComPtr<IDXGISurface> dx;
+    POINT offset{};
+    hr(s->BeginDraw(nullptr, __uuidof(IDXGISurface),
+                    reinterpret_cast<void **>(dx.GetAddressOf()), &offset));
+    ComPtr<ID2D1RenderTarget> rt;
+    auto props = D2D1::RenderTargetProperties(
+        D2D1_RENDER_TARGET_TYPE_DEFAULT,
+        D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM,
+                          D2D1_ALPHA_MODE_PREMULTIPLIED),
+        96 * scale, 96 * scale);
+    hr(d2d->CreateDxgiSurfaceRenderTarget(dx.Get(), &props, &rt));
+    rt->BeginDraw();
+    rt->SetTransform(
+        D2D1::Matrix3x2F::Translation(offset.x / scale, offset.y / scale));
+    rt->Clear(D2D1::ColorF(0, 0, 0, 0));
+    ComPtr<ID2D1SolidColorBrush> brush;
+    hr(rt->CreateSolidColorBrush(D2D1::ColorF(color.r, color.g, color.b, alpha),
+                                 &brush));
+    if (label) {
+      ComPtr<IDWriteTextFormat> font;
+      hr(write->CreateTextFormat(
+          L"Microsoft YaHei UI", nullptr, DWRITE_FONT_WEIGHT_MEDIUM,
+          DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL,
+          float(settings.fontSize * 96 / 72), L"zh-CN", &font));
+      font->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);
+      font->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+      DWRITE_TRIMMING trim{DWRITE_TRIMMING_GRANULARITY_CHARACTER, 0, 0};
+      ComPtr<IDWriteInlineObject> ellipsis;
+      hr(write->CreateEllipsisTrimmingSign(font.Get(), &ellipsis));
+      font->SetTrimming(&trim, ellipsis.Get());
+      rt->DrawText(label->c_str(), UINT32(label->size()), font.Get(),
+                   D2D1::RectF(8, 0, width - 8, height), brush.Get());
+    } else
+      rt->FillRectangle(D2D1::RectF(0, 0, width, height), brush.Get());
+    auto drawResult = rt->EndDraw();
+    auto surfaceResult = s->EndDraw();
+    hr(drawResult);
+    hr(surfaceResult);
+    hr(visual->SetContent(s.Get()));
+    surfaces.push_back(s);
+  }
+
+public:
+  void init(HWND hwnd) {
+    UINT flags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+    auto result = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr,
+                                    flags, nullptr, 0, D3D11_SDK_VERSION, &gpu,
+                                    nullptr, nullptr);
+    if (FAILED(result))
+      hr(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_WARP, nullptr, flags,
+                           nullptr, 0, D3D11_SDK_VERSION, &gpu, nullptr,
+                           nullptr));
+    ComPtr<IDXGIDevice> dx;
+    hr(gpu.As(&dx));
+    hr(DCompositionCreateDevice(
+        dx.Get(), __uuidof(IDCompositionDevice),
+        reinterpret_cast<void **>(comp.GetAddressOf())));
+    hr(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
+                         d2d.GetAddressOf()));
+    hr(DWriteCreateFactory(
+        DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory),
+        reinterpret_cast<IUnknown **>(write.GetAddressOf())));
+    hr(comp->CreateTargetForHwnd(hwnd, TRUE, &target));
+    hr(comp->CreateVisual(&root));
+    hr(comp->CreateVisual(&track));
+    hr(comp->CreateVisual(&fill));
+    hr(comp->CreateVisual(&text));
+    hr(root->AddVisual(track.Get(), FALSE, nullptr));
+    hr(root->AddVisual(fill.Get(), TRUE, track.Get()));
+    hr(root->AddVisual(text.Get(), TRUE, fill.Get()));
+    hr(comp->CreateRectangleClip(&rootClip));
+    hr(comp->CreateRectangleClip(&fillClip));
+    hr(root->SetClip(rootClip.Get()));
+    hr(fill->SetClip(fillClip.Get()));
+    hr(target->SetRoot(root.Get()));
+  }
+  std::pair<float, float> measure(const std::wstring &label, const Settings &s,
+                                  float dpi, float available) {
+    scale = dpi / 96.f;
+    settings = s;
+    ComPtr<IDWriteTextFormat> font;
+    hr(write->CreateTextFormat(
+        L"Microsoft YaHei UI", nullptr, DWRITE_FONT_WEIGHT_MEDIUM,
+        DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL,
+        float(s.fontSize * 96 / 72), L"zh-CN", &font));
+    font->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);
+    ComPtr<IDWriteTextLayout> layout;
+    hr(write->CreateTextLayout(label.c_str(), UINT32(label.size()), font.Get(),
+                               10000, 100, &layout));
+    DWRITE_TEXT_METRICS m;
+    hr(layout->GetMetrics(&m));
+    float cap = std::max(60.f, std::min(float(s.width), available));
+    width =
+        s.adaptiveWidth
+            ? std::min(
+                  cap,
+                  std::max(48.f,
+                           std::ceil(m.widthIncludingTrailingWhitespace) + 16))
+            : cap;
+    height = std::max(28.f, std::ceil(m.height) + 8);
+    return {width, height};
+  }
+  void draw(const std::wstring &label, const Settings &s, bool dark,
+            bool highContrast) {
+    settings = s;
+    auto p = palette(s, dark);
+    if (highContrast)
+      p = {systemColor(COLOR_WINDOW), systemColor(COLOR_HIGHLIGHT),
+           systemColor(COLOR_WINDOWTEXT)};
+    surfaces.clear();
+    surface(track, p.background, (s.highlight || highContrast) ? 1.f : 0.f);
+    surface(fill, p.fill, s.showFill && !highContrast ? 1.f : 0.f);
+    surface(text, p.text, 1, &label);
+    hr(rootClip->SetLeft(0.f));
+    hr(rootClip->SetTop(0.f));
+    hr(rootClip->SetRight(width * scale));
+    hr(rootClip->SetBottom(height * scale));
+    hr(rootClip->SetTopLeftRadiusX(6 * scale));
+    hr(rootClip->SetTopLeftRadiusY(6 * scale));
+    hr(rootClip->SetTopRightRadiusX(6 * scale));
+    hr(rootClip->SetTopRightRadiusY(6 * scale));
+    hr(rootClip->SetBottomLeftRadiusX(6 * scale));
+    hr(rootClip->SetBottomLeftRadiusY(6 * scale));
+    hr(rootClip->SetBottomRightRadiusX(6 * scale));
+    hr(rootClip->SetBottomRightRadiusY(6 * scale));
+    hr(fillClip->SetLeft(0.f));
+    hr(fillClip->SetTop(0.f));
+    hr(fillClip->SetBottom(height * scale));
+    hr(comp->Commit());
+  }
+  void countdown(double fraction, double seconds, bool paused, bool reduced) {
+    float start = width * scale * float(fraction);
+    if (!settings.showFill || paused || reduced || seconds <= 0)
+      hr(fillClip->SetRight(start));
+    else {
+      ComPtr<IDCompositionAnimation> animation;
+      hr(comp->CreateAnimation(&animation));
+      hr(animation->AddCubic(0, start, -start / float(seconds), 0, 0));
+      hr(animation->End(seconds, 0));
+      hr(fillClip->SetRight(animation.Get()));
+    }
+    hr(comp->Commit());
+  }
+};
+} // namespace cibar

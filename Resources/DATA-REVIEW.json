@@ -1,0 +1,25 @@
+{
+  "wordCount": 5400,
+  "levelCounts": {
+    "1": 300,
+    "2": 200,
+    "3": 500,
+    "4": 1000,
+    "5": 1600,
+    "6": 1800
+  },
+  "sourceVersion": "2026-09-09",
+  "downloaded": "2026-10-05",
+  "examples": 3071,
+  "automaticallyTransliteratedExamples": 3060,
+  "headwordCrosscheckMismatches": [],
+  "priorCorrectionRows": 33,
+  "notes": [
+    "Sequence in HearMandarin is GLOBAL despite field description; converted to original level-local serials.",
+    "HSK4 两2 is weight measure, not HSK1 two.",
+    "Tatoeba selection is substring-based for multi-character words; example sense may differ from target.",
+    "Missing examples explicitly shown in app; automatic sentence Pinyin is labelled, not certified."
+  ],
+  "officialPDFRowsMatched": 5400,
+  "officialPDFMismatches": []
+}

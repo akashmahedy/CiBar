@@ -1,0 +1,22 @@
+.DS_Store
+*.app/
+*.zip
+*.dSYM/
+__pycache__/
+*.pyc
+outputs/
+work/
+state.json
+restored-words.json
+*Backup*.json
+*backup*.json
+before-restore-*.json
+.env
+.env.*
+Resources/words-prep.json
+# Local personal preparation and measurement tools are not public.
+Tools/package_release.py
+Tools/build_data.py
+Tools/measure.py
+Tools/PrepareSentences.swift
+Tools/FinishData.swift

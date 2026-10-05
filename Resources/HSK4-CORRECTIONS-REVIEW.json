@@ -1,0 +1,266 @@
+[
+  {
+    "serial": 42,
+    "hanzi": "博士",
+    "dataset_pinyin": "bóshì",
+    "dataset_english": "PhD; doctorate",
+    "previous_pinyin": "bóshì",
+    "previous_english": "PhD; doctorate; holder of a doctoral degree"
+  },
+  {
+    "serial": 139,
+    "hanzi": "倒",
+    "dataset_pinyin": "dào",
+    "dataset_english": "to pour; to turn upside down",
+    "previous_pinyin": "dào",
+    "previous_english": "to pour; to invert; upside down; but, yet"
+  },
+  {
+    "serial": 147,
+    "hanzi": "等",
+    "dataset_pinyin": "děng",
+    "dataset_english": "etc.; and so on; grade or class",
+    "previous_pinyin": "děng",
+    "previous_english": "and so on, etc.; class, rank, grade"
+  },
+  {
+    "serial": 200,
+    "hanzi": "费用",
+    "dataset_pinyin": "fèiyong",
+    "dataset_english": "cost; expense",
+    "previous_pinyin": "fèiyòng",
+    "previous_english": "cost, expense"
+  },
+  {
+    "serial": 274,
+    "hanzi": "光",
+    "dataset_pinyin": "guāng",
+    "dataset_english": "light; bright",
+    "previous_pinyin": "guāng",
+    "previous_english": "light, ray; bright, shiny; used up; bare; only, merely"
+  },
+  {
+    "serial": 275,
+    "hanzi": "广播",
+    "dataset_pinyin": "guǎngbō",
+    "dataset_english": "broadcast; radio",
+    "previous_pinyin": "guǎngbō",
+    "previous_english": "to broadcast; radio broadcast, broadcasting"
+  },
+  {
+    "serial": 284,
+    "hanzi": "害羞",
+    "dataset_pinyin": "hàixiū",
+    "dataset_english": "shy; bashful",
+    "previous_pinyin": "hàixiū",
+    "previous_english": "shy, bashful"
+  },
+  {
+    "serial": 290,
+    "hanzi": "好处",
+    "dataset_pinyin": "hǎochu",
+    "dataset_english": "benefit; advantage",
+    "previous_pinyin": "hǎochu",
+    "previous_english": "benefit"
+  },
+  {
+    "serial": 304,
+    "hanzi": "坏处",
+    "dataset_pinyin": "huàichù",
+    "dataset_english": "harm; disadvantage",
+    "previous_pinyin": "huàichu",
+    "previous_english": "disadvantage, harm"
+  },
+  {
+    "serial": 308,
+    "hanzi": "回信",
+    "dataset_pinyin": "huíxìn",
+    "dataset_english": "to write back; a reply letter",
+    "previous_pinyin": "huíxìn",
+    "previous_english": "to reply to a letter, to write back; reply letter"
+  },
+  {
+    "serial": 310,
+    "hanzi": "会员",
+    "dataset_pinyin": "huìyuán",
+    "dataset_english": "member",
+    "previous_pinyin": "huìyuán",
+    "previous_english": "member"
+  },
+  {
+    "serial": 312,
+    "hanzi": "活动",
+    "dataset_pinyin": "huódòng",
+    "dataset_english": "activity; event",
+    "previous_pinyin": "huódòng",
+    "previous_english": "to move, to exercise, to be active; activity, event"
+  },
+  {
+    "serial": 313,
+    "hanzi": "活泼",
+    "dataset_pinyin": "huópō",
+    "dataset_english": "lively; vivacious",
+    "previous_pinyin": "huópo",
+    "previous_english": "lively"
+  },
+  {
+    "serial": 320,
+    "hanzi": "基本上",
+    "dataset_pinyin": "jīběnshàng",
+    "dataset_english": "basically; on the whole",
+    "previous_pinyin": "jīběnshang",
+    "previous_english": "basically"
+  },
+  {
+    "serial": 347,
+    "hanzi": "价钱",
+    "dataset_pinyin": "jiàqián",
+    "dataset_english": "price; cost",
+    "previous_pinyin": "jiàqian",
+    "previous_english": "price"
+  },
+  {
+    "serial": 364,
+    "hanzi": "降价",
+    "dataset_pinyin": "jiàngjià",
+    "dataset_english": "to cut prices",
+    "previous_pinyin": "jiàngjià",
+    "previous_english": "to reduce the price, to get cheaper"
+  },
+  {
+    "serial": 376,
+    "hanzi": "教学",
+    "dataset_pinyin": "jiàoxué",
+    "dataset_english": "teaching; instruction",
+    "previous_pinyin": "jiàoxué",
+    "previous_english": "teaching, instruction"
+  },
+  {
+    "serial": 458,
+    "hanzi": "老是",
+    "dataset_pinyin": "lǎoshì",
+    "dataset_english": "always",
+    "previous_pinyin": "lǎoshi",
+    "previous_english": "always, constantly"
+  },
+  {
+    "serial": 473,
+    "hanzi": "两",
+    "dataset_pinyin": "liǎng",
+    "dataset_english": "measure word for weight: liang, equal to 50 grams",
+    "previous_pinyin": "liǎng",
+    "previous_english": "two, both; tael (unit of weight)"
+  },
+  {
+    "serial": 485,
+    "hanzi": "留下",
+    "dataset_pinyin": "liúxia",
+    "dataset_english": "to leave behind; to remain",
+    "previous_pinyin": "liúxià",
+    "previous_english": "to leave behind, to remain"
+  },
+  {
+    "serial": 684,
+    "hanzi": "受不了",
+    "dataset_pinyin": "shòubuliǎo",
+    "dataset_english": "unbearable",
+    "previous_pinyin": "shòubùliǎo",
+    "previous_english": "to be unable to bear, to be unable to stand"
+  },
+  {
+    "serial": 689,
+    "hanzi": "熟悉",
+    "dataset_pinyin": "shúxi",
+    "dataset_english": "to be familiar with",
+    "previous_pinyin": "shúxī",
+    "previous_english": "to be familiar with, to know well"
+  },
+  {
+    "serial": 702,
+    "hanzi": "硕士",
+    "dataset_pinyin": "shuòshì",
+    "dataset_english": "master's degree",
+    "previous_pinyin": "shuòshì",
+    "previous_english": "master’s degree; holder of a master’s degree"
+  },
+  {
+    "serial": 717,
+    "hanzi": "态度",
+    "dataset_pinyin": "tàidù",
+    "dataset_english": "attitude; manner",
+    "previous_pinyin": "tàidu",
+    "previous_english": "attitude, manner"
+  },
+  {
+    "serial": 718,
+    "hanzi": "弹",
+    "dataset_pinyin": "tán",
+    "dataset_english": "to play (a string instrument); to pluck",
+    "previous_pinyin": "tán",
+    "previous_english": "to play a musical instrument; to pluck; to flick"
+  },
+  {
+    "serial": 773,
+    "hanzi": "味道",
+    "dataset_pinyin": "wèidào",
+    "dataset_english": "flavor",
+    "previous_pinyin": "wèidao",
+    "previous_english": "taste, flavor"
+  },
+  {
+    "serial": 780,
+    "hanzi": "污染",
+    "dataset_pinyin": "wūrǎn",
+    "dataset_english": "to pollute",
+    "previous_pinyin": "wūrǎn",
+    "previous_english": "to pollute, to contaminate; pollution"
+  },
+  {
+    "serial": 862,
+    "hanzi": "夜",
+    "dataset_pinyin": "yè",
+    "dataset_english": "night; measure word for nights",
+    "previous_pinyin": "yè",
+    "previous_english": "night"
+  },
+  {
+    "serial": 908,
+    "hanzi": "月饼",
+    "dataset_pinyin": "yuèbing",
+    "dataset_english": "mooncake",
+    "previous_pinyin": "yuèbǐng",
+    "previous_english": "mooncake"
+  },
+  {
+    "serial": 909,
+    "hanzi": "阅读",
+    "dataset_pinyin": "yuèdú",
+    "dataset_english": "to read",
+    "previous_pinyin": "yuèdú",
+    "previous_english": "to read"
+  },
+  {
+    "serial": 915,
+    "hanzi": "再说",
+    "dataset_pinyin": "zàishuō",
+    "dataset_english": "to say again; moreover",
+    "previous_pinyin": "zàishuō",
+    "previous_english": "to discuss later; besides, moreover"
+  },
+  {
+    "serial": 947,
+    "hanzi": "值得",
+    "dataset_pinyin": "zhídé",
+    "dataset_english": "to be worth; to deserve",
+    "previous_pinyin": "zhíde",
+    "previous_english": "to be worth, to deserve"
+  },
+  {
+    "serial": 991,
+    "hanzi": "座",
+    "dataset_pinyin": "zuò",
+    "dataset_english": "seat; measure word for buildings",
+    "previous_pinyin": "zuò",
+    "previous_english": "seat, base; classifier for buildings, mountains, bridges"
+  }
+]

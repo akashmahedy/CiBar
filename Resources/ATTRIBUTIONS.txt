@@ -1,0 +1,66 @@
+CíBar — Sources and licenses
+
+Created by Akash Mahedy (@akashmahedy)
+Project: https://github.com/akashmahedy/CiBar
+
+APP CODE
+MIT License. Copyright (c) 2026 Akash Mahedy (@akashmahedy).
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+VOCABULARY BASE
+HearMandarin (https://hearmandarin.com), HSK 3.0 Word List Dataset.
+https://hearmandarin.com/datasets/
+CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+Dataset version: 2026-09-09; generated 2026-09-28; retrieved 2026-10-05.
+Adaptations: levels 1–6 selected, global serials converted to level-local,
+previous reviewed HSK4 pronunciation/meaning corrections retained, weight
+sense of HSK4 两2 clarified. The resulting adapted vocabulary pack is shared
+under CC BY-SA 4.0 because retained corrections are CC-CEDICT-informed.
+Original base data remains available under CC BY 4.0 from HearMandarin.
+
+PREVIOUS HSK4 CORRECTIONS
+CC-CEDICT contributors, via MDBG, release 2026-10-03.
+https://www.mdbg.net/chinese/dictionary?page=cedict
+CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+MandarinBean original list: https://mandarinbean.com/new-hsk-4-word-list/
+Existing user migration copy preserves that source and previous review.
+Migration copies are personal source snapshots, not a claim of a new license
+for MandarinBean's original English wording.
+
+OFFICIAL HEADWORD CHECK
+Chinese Testing International, 新版HSK考试大纲（词汇、汉字、语法）.
+https://www.chinesetest.cn/syllabus
+Official PDF downloaded 2026-10-05 from hsk.cn-bj.ufileos.com/3.0/.
+Machine-readable secondary crosscheck: chelsea6502/hsk-2025-data
+https://github.com/chelsea6502/hsk-2025-data
+That crosscheck is not redistributed as app data.
+
+EXAMPLES
+Tatoeba contributors, selected bilingual Mandarin/English pairs by Charles
+Kelly / ManyThings.org: https://www.manythings.org/anki/
+https://tatoeba.org/
+CC BY 2.0 France: https://creativecommons.org/licenses/by/2.0/fr/
+Each included sentence retains both contributor usernames and sentence IDs,
+shown in the word card and stored in words.json. Selected from the bilingual
+download; Chinese converted to simplified and sentence Pinyin generated
+using macOS Mandarin-to-Latin transliteration. Automatic sentence Pinyin is
+labelled because polyphonic words and neutral tones may need checking.
+Examples can use a different sense from a word's teaching gloss.
+CíBar original examples are labelled separately and dedicated under CC0 1.0:
+https://creativecommons.org/publicdomain/zero/1.0/
+No audio or dictionary corpus is bundled. No endorsement by any source is
+implied. DATA-REVIEW.json and HSK4-CORRECTIONS-REVIEW.json describe changes.

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360">
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#142b34"/><stop offset="1" stop-color="#315b5d"/></linearGradient></defs>
+  <rect width="1120" height="360" rx="28" fill="url(#bg)"/>
+  <circle cx="1005" cy="35" r="185" fill="#c6e5d8" opacity=".05"/>
+  <circle cx="1020" cy="330" r="225" fill="#c6e5d8" opacity=".04"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif">
+    <text x="64" y="100" fill="#b6d8cc" font-size="16" letter-spacing="3">CHINESE, ONE WORD AT A TIME</text>
+    <text x="60" y="177" fill="#f0f7f4" font-size="72" font-weight="650">CíBar</text>
+    <text x="64" y="221" fill="#d3e5df" font-size="25">A little Chinese, throughout your day.</text>
+    <text x="64" y="297" fill="#b6d0c7" font-size="17">Native macOS · Offline · Free &amp; open source</text>
+    <rect x="680" y="131" width="365" height="70" rx="17" fill="#41676a"/>
+    <path d="M697 131h203v70H697a17 17 0 0 1-17-17v-36a17 17 0 0 1 17-17" fill="#5f8584"/>
+    <text x="702" y="175" fill="#f1f6f4" font-size="23">词 · cí · word</text>
+    <text x="681" y="239" fill="#b6d0c7" font-size="17">Created by Akash Mahedy</text>
+    <text x="681" y="265" fill="#94b9aa" font-size="16">@akashmahedy</text>
+  </g>
+</svg>

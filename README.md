@@ -12,6 +12,8 @@
 
 <p align="center"><a href="#download-and-install">Download</a> · <a href="#make-it-yours">Features</a> · <a href="docs/USER-GUIDE.md">User guide</a> · <a href="docs/DATA.md">Vocabulary & sources</a> · <a href="#build-from-source">Build</a></p>
 
+[Project website](https://akashmahedy.github.io/CiBar/) — downloads, features and installation notes.
+
 ## Chinese that stays in view
 
 CíBar puts Hanzi, Pinyin and a short English meaning in your menu bar. A gentle fill shrinks smoothly until the next word. Click to read the full meaning, a sourced example and its attribution. The timer pauses while you read and resumes when you close the card.

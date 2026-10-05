@@ -1,0 +1,102 @@
+{
+  "createdAt" : 812873921.251587,
+  "data" : {
+    "customWords" : [
+      {
+        "english" : "hello",
+        "example" : {
+          "attribution" : "Test fixture",
+          "english" : "Hello.",
+          "hanzi" : "你好。",
+          "pinyin" : "Nǐ hǎo.",
+          "pinyinAutomatic" : false,
+          "sourceURL" : ""
+        },
+        "hanzi" : "你好",
+        "id" : "custom-test:1",
+        "level" : 0,
+        "note" : "",
+        "pack" : "custom-test",
+        "pinyin" : "nǐ hǎo",
+        "serial" : 1,
+        "source" : "Contract fixture"
+      }
+    ],
+    "favorites" : [
+      "hsk2025:1001"
+    ],
+    "migratedSwiftBar" : false,
+    "schemaVersion" : 1,
+    "sessions" : {
+      "hsk2025|1:1-300,4:1-1000|false|false" : {
+        "index" : 1,
+        "manuallyPaused" : true,
+        "order" : [
+          "hsk2025:1",
+          "hsk2025:1001"
+        ],
+        "remaining" : 17.5
+      }
+    },
+    "settings" : {
+      "adaptiveWidth" : true,
+      "contrast" : "Soft",
+      "customColor" : "5A919C",
+      "favoritesOnly" : false,
+      "fontSize" : 13,
+      "highlight" : true,
+      "interval" : 45,
+      "levels" : [
+        1,
+        4
+      ],
+      "pack" : "hsk2025",
+      "preset" : "Ocean",
+      "random" : false,
+      "ranges" : {
+        "1" : {
+          "end" : 300,
+          "start" : 1
+        },
+        "4" : {
+          "end" : 1000,
+          "start" : 1
+        }
+      },
+      "showFill" : true,
+      "showHanzi" : true,
+      "showLevel" : true,
+      "showMeaning" : true,
+      "showPinyin" : true,
+      "showSerial" : true,
+      "width" : 260
+    }
+  },
+  "format" : "CiBarBackup",
+  "licenses" : "Synthetic test fixture. No private data.",
+  "version" : 1,
+  "words" : [
+    {
+      "english" : "love",
+      "hanzi" : "爱",
+      "id" : "hsk2025:1",
+      "level" : 1,
+      "note" : "",
+      "pack" : "hsk2025",
+      "pinyin" : "ài",
+      "serial" : 1,
+      "source" : "Contract fixture"
+    },
+    {
+      "english" : "aunt",
+      "hanzi" : "阿姨",
+      "id" : "hsk2025:1001",
+      "level" : 4,
+      "note" : "",
+      "pack" : "hsk2025",
+      "pinyin" : "āyí",
+      "serial" : 1,
+      "source" : "Contract fixture"
+    }
+  ]
+}

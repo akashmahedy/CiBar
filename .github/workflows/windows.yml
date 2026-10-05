@@ -1,0 +1,50 @@
+name: Windows build and compatibility
+on:
+  push:
+    paths: ['Windows/**', 'Resources/**', 'Sources/Model.swift', '.github/workflows/windows.yml']
+  pull_request:
+    paths: ['Windows/**', 'Resources/**', 'Sources/Model.swift', '.github/workflows/windows.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build and core tests
+        shell: pwsh
+        run: ./Windows/tools/build.ps1
+      - name: Native GUI smoke (Windows Server runner, not Windows 11 visual QA)
+        id: smoke
+        continue-on-error: true
+        shell: pwsh
+        run: ./Windows/tools/build.ps1 -Smoke
+      - name: Package public app
+        shell: pwsh
+        run: ./Windows/tools/package.ps1
+      - name: Upload app and verification records
+        uses: actions/upload-artifact@v7
+        with:
+          name: CiBar-Windows-x64
+          path: |
+            outputs/CiBar-Windows-x64.zip
+            outputs/CiBar-Windows-SHA256SUMS.txt
+            outputs/windows-build/windows-v1-roundtrip.json
+            outputs/windows-build/smoke-data/smoke-*.json
+          if-no-files-found: error
+  mac-backup-contract:
+    needs: windows
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v4
+        with:
+          name: CiBar-Windows-x64
+          path: outputs/contract
+      - name: Validate using the actual Mac Codable model
+        run: |
+          swiftc Sources/Model.swift Windows/tests/SwiftBridge/main.swift -o outputs/swift-bridge
+          file=$(find outputs/contract -name windows-v1-roundtrip.json -print -quit)
+          test -n "$file"
+          outputs/swift-bridge outputs/mac-v1-roundtrip.json "$file"

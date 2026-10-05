@@ -31,6 +31,14 @@ CíBar puts Hanzi, Pinyin and a short English meaning in your menu bar. A gentle
 
 Requires macOS 13+. The Apple Silicon app is arm64-only and does not need Rosetta. The Intel app is separate. Releases use a local ad-hoc signature and are **not Apple-notarized**. If macOS blocks a download, review the source and use the normal **Privacy & Security → Open Anyway** flow. Do not disable Gatekeeper globally.
 
+## Windows 11 preview
+
+A native **C++20 / Win32** edition displays a movable vocabulary pill **above the taskbar**. It includes DirectComposition countdown fill, the same 5400-word pack, study and appearance controls, full word cards, Favorites, and Mac-compatible version 1 backups. Created by **Akash Mahedy · @akashmahedy**.
+
+Download [CiBar-Windows-x64.zip — prerelease](https://github.com/akashmahedy/CiBar/releases/tag/v1.1.0-preview.1), extract the entire folder and run `CiBar.exe`. Intel/AMD x64, Windows 11; no .NET, Electron or separate C++ runtime installation. Default HSK4, sequential, 45 seconds, adaptive width capped at 260.
+
+**Preview status:** automated native build/core tests and Mac backup compatibility are checked in [Windows CI](https://github.com/akashmahedy/CiBar/actions/workflows/windows.yml). Real Windows 11 GUI, display-scaling and five-minute resource measurements remain pending. Mac screenshots and performance figures on this page describe the Mac edition. See the [Windows guide](Windows/README.md), [verification checklist](Windows/VERIFICATION.md), and [Windows source](Windows/). The Mac edition remains the current stable release.
+
 ## Make it yours
 
 | Study | Appearance | Your library |

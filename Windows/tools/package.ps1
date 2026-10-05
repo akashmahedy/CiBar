@@ -11,11 +11,12 @@ foreach ($name in @('words.json','ATTRIBUTIONS.txt','DATA-REVIEW.json','HSK4-COR
     Copy-Item (Join-Path $root "Resources/$name") (Join-Path $release "Resources/$name") -Force
 }
 Copy-Item (Join-Path $root 'LICENSE') $release -Force
+Copy-Item (Join-Path $root 'Windows/VERIFICATION.md') $release -Force
 Copy-Item (Join-Path $root 'Windows/README.md') (Join-Path $release 'START-HERE.md') -Force
 Copy-Item (Join-Path $root 'Windows/vendor/nlohmann/LICENSE.MIT') (Join-Path $release 'JSON-LICENSE.MIT') -Force
 $archive = Join-Path $root 'outputs/CiBar-Windows-x64.zip'
 # Explicit allowlist. Never read or package LOCALAPPDATA or exported backups.
-$items = @((Join-Path $release 'CiBar.exe'), (Join-Path $release 'Resources'), (Join-Path $release 'LICENSE'), (Join-Path $release 'START-HERE.md'), (Join-Path $release 'JSON-LICENSE.MIT'))
+$items = @((Join-Path $release 'CiBar.exe'), (Join-Path $release 'Resources'), (Join-Path $release 'LICENSE'), (Join-Path $release 'START-HERE.md'), (Join-Path $release 'JSON-LICENSE.MIT'), (Join-Path $release 'VERIFICATION.md'))
 Compress-Archive -Path $items -DestinationPath $archive -Force
 $hash = (Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant()
 Set-Content (Join-Path $root 'outputs/CiBar-Windows-SHA256SUMS.txt') "$hash  CiBar-Windows-x64.zip" -Encoding utf8

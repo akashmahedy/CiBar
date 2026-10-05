@@ -30,8 +30,11 @@ jobs:
           codesign --verify --deep --strict ../outputs/${{ matrix.app }}
           ../outputs/${{ matrix.app }}/Contents/MacOS/CiBar --self-test
       - name: Package clean app
-        run: ditto -c -k --sequesterRsrc --keepParent ../outputs/${{ matrix.app }} ../outputs/CiBar-${{ matrix.architecture }}.zip
+        run: |
+          mkdir -p outputs
+          ditto -c -k --sequesterRsrc --keepParent ../outputs/${{ matrix.app }} outputs/CiBar-${{ matrix.architecture }}.zip
       - uses: actions/upload-artifact@v4
         with:
           name: CiBar-${{ matrix.architecture }}
-          path: ../outputs/CiBar-${{ matrix.architecture }}.zip
+          path: outputs/CiBar-${{ matrix.architecture }}.zip
+          if-no-files-found: error

@@ -28,6 +28,19 @@ CíBar puts Hanzi, Pinyin and a short English meaning in your menu bar. A gentle
 
 *Native rendered previews. Long text is shortened in the menu bar; the word card keeps the full text.*
 
+## A free, open-source alternative
+
+CíBar is a **free, open-source alternative to VocaBar PRO, Word Drop, Wunderbar and LingoBar for Chinese vocabulary review**. Keep words visible while you work, choose your study interval and open a card for more context. The Mac edition is stable; Windows 11 is a preview.
+
+| Compare with | Shared workflow | CíBar's focus and limits |
+| --- | --- | --- |
+| [VocaBar / PRO](https://apps.apple.com/us/app/vocabar-menubar-word-app/id6744346351) | Menu-bar words and meanings, adjustable intervals, sequential/random playback and custom imports | Free HSK 1–6 library, Pinyin, serial ranges and portable backups. VocaBar has a limited free tier and a paid PRO unlock. |
+| [Word Drop](https://apps.apple.com/us/app/word-drop-menu-bar/id6759536699) | Rotating menu-bar vocabulary, Chinese support, meanings and example cards | HSK-focused study and custom vocabulary. Word Drop is paid and includes multiple learning languages; CíBar's bundled library is Chinese. |
+| [Wunderbar](https://wunderbarapp.com/) | Menu-bar vocabulary, intervals, example sentences and custom word lists | Free sequential/random HSK review. Wunderbar is paid and includes spaced repetition and audio pronunciation; CíBar currently provides neither. |
+| [LingoBar](https://lingobar.net/) | Menu-bar vocabulary, meanings, examples, Favorites and custom words | Free, offline Chinese HSK review. LingoBar has free and premium features, multiple learning languages and audio pronunciation. |
+
+These comparisons describe a similar vocabulary workflow, not complete feature parity or an affiliation with the other apps. CíBar's app code is MIT-licensed; bundled vocabulary and examples retain their separate licenses. See [data sources and limits](docs/DATA.md).
+
 ## Download and install
 
 1. Open [Releases](https://github.com/akashmahedy/CiBar/releases/latest).

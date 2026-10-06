@@ -12,7 +12,11 @@
 
 <p align="center"><a href="#download-and-install">Download</a> · <a href="#make-it-yours">Features</a> · <a href="docs/USER-GUIDE.md">User guide</a> · <a href="docs/DATA.md">Vocabulary & sources</a> · <a href="#build-from-source">Build</a></p>
 
-[Project website](https://akashmahedy.github.io/CiBar/) — downloads, features and installation notes.
+[Project website](https://akashmahedy.github.io/CiBar/) · [Mac stable download](https://github.com/akashmahedy/CiBar/releases/tag/v1.0.2) · [Windows 11 preview](https://github.com/akashmahedy/CiBar/releases/tag/v1.1.0-preview.1)
+
+![CíBar native Mac UI demo: shrinking fill, sourced example card and next word](docs/assets/demo.gif)
+
+*Native Mac UI demo with timing shortened. Mac is stable; Windows 11 is a preview. [25-second video](docs/assets/demo-landscape.mp4) · [Portrait video for social sharing](docs/assets/demo-vertical.mp4).*
 
 ## Chinese that stays in view
 

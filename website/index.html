@@ -3,19 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CíBar — Free Chinese Vocabulary App for Mac &amp; Windows</title>
+  <title>CíBar - Free Chinese Vocabulary App for Mac &amp; Windows</title>
   <meta name="description" content="Learn Chinese throughout your day with CíBar. Free, offline Hanzi, Pinyin and English in your Mac menu bar or Windows taskbar pill. 5400 HSK 3.0 words, examples and portable backups.">
   <meta name="google-site-verification" content="IS4JGgb3mdQSCqfTpSwXJUV20yY3QuC2FZ2OgP8nM5U">
   <meta name="theme-color" content="#357b7b">
   <link rel="canonical" href="https://akashmahedy.github.io/CiBar/">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="assets/word-card.webp" media="(prefers-color-scheme: light)">
+  <link rel="preload" as="image" href="assets/word-card-dark.webp" media="(prefers-color-scheme: dark)">
+  <script src="site.js" defer></script>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="CíBar — A little Chinese, throughout your day.">
+  <meta property="og:title" content="CíBar - A little Chinese, throughout your day.">
   <meta property="og:description" content="Free, native and offline. Hanzi, Pinyin, English and HSK 3.0 vocabulary in view while you work. Created by Akash Mahedy.">
   <meta property="og:url" content="https://akashmahedy.github.io/CiBar/">
-  <meta property="og:image" content="https://akashmahedy.github.io/CiBar/assets/menu-light.png">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://akashmahedy.github.io/CiBar/assets/demo-poster.png">
+  <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"CíBar","alternateName":"CiBar","url":"https://akashmahedy.github.io/CiBar/","description":"Free offline Chinese vocabulary app with Hanzi, Pinyin, English, HSK 3.0 vocabulary and examples.","applicationCategory":"EducationalApplication","operatingSystem":"macOS 13 or later; Windows 11 x64 (preview)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Akash Mahedy","url":"https://github.com/akashmahedy"},"license":"https://github.com/akashmahedy/CiBar/blob/main/LICENSE","codeRepository":"https://github.com/akashmahedy/CiBar"}
   </script>
@@ -23,60 +26,65 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="wrap nav">
-    <a class="brand" href="./" aria-label="CíBar home"><span class="brand-icon" lang="zh">词</span>CíBar</a>
-    <nav aria-label="Main navigation"><a href="#features">Features</a><a href="#download">Download</a><a href="https://github.com/akashmahedy/CiBar">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <a class="brand" href="./" aria-label="CíBar home"><span class="brand-icon" lang="zh" aria-hidden="true">词</span>CíBar</a>
+    <nav aria-label="Main navigation"><a href="#features">Features</a><a href="#download">Download</a><a href="https://github.com/akashmahedy/CiBar">GitHub</a></nav>
   </header>
-  <main id="main">
-    <section class="wrap hero">
-      <div>
-        <p class="eyebrow">CHINESE VOCABULARY, IN VIEW</p>
-        <h1>A little Chinese,<br>throughout your day<span class="teal">.</span></h1>
-        <p class="intro">Keep Hanzi, Pinyin and English beside your work. A gentle countdown brings the next word; a click opens its full meaning and example.</p>
-        <div class="actions"><a class="button primary" href="#download">Get CíBar — free <span aria-hidden="true">↓</span></a><a class="button secondary" href="https://github.com/akashmahedy/CiBar">Explore the source</a></div>
-        <p class="quiet">Native · Offline · Open source · No account · No subscription</p>
+  <main id="main" tabindex="-1">
+    <section class="wrap hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <p class="eyebrow">Chinese vocabulary, in view</p>
+        <h1 id="hero-heading">A little Chinese,<br><span>throughout your day.</span></h1>
+        <p class="intro">Hanzi, Pinyin and English beside your work. A gentle timer brings the next word; click for meaning and examples.</p>
+        <div class="actions"><a class="button primary" href="#download">Download</a><a class="button secondary" href="https://github.com/akashmahedy/CiBar">GitHub</a></div>
       </div>
-      <div class="preview">
-        <div class="preview-top"><span class="dots" aria-hidden="true">● ● ●</span><span>Small habit. Steady progress.</span></div>
-        <div class="word"><span class="word-number">HSK 4 · #1</span><span class="hanzi" lang="zh-Hans">阿姨</span><span class="pinyin">āyí</span><span class="meaning">aunt; a polite term for an older woman</span><div class="demo-track" aria-hidden="true"><div></div></div></div>
-        <div class="example"><span class="eyebrow">LEARN IN CONTEXT</span><p>Open a word card to read a sourced sentence, its Pinyin, translation and attribution.</p></div>
-        <div class="native-preview"><img src="assets/menu-light.png" alt="Native rendered CíBar Mac menu-bar preview with Chinese vocabulary and a countdown fill" width="760" height="52"><span>Native rendered Mac menu-bar preview</span></div>
+      <div class="hero-product">
+        <picture class="native-pill"><source srcset="assets/pill-dark.webp" media="(prefers-color-scheme: dark)"><img src="assets/pill-light.webp" alt="CíBar’s native Mac menu-bar pill showing Hanzi, Pinyin, meaning and countdown fill" width="528" height="44" fetchpriority="high"></picture>
+        <picture class="native-card"><source srcset="assets/word-card-dark.webp" media="(prefers-color-scheme: dark)"><img class="word-card" src="assets/word-card.webp" alt="Actual CíBar word card: 安排, ānpái, to arrange; to plan, with a sourced sentence, Favorite, copy and playback controls" width="960" height="1280" fetchpriority="high"></picture>
       </div>
     </section>
-    <section class="wrap facts" aria-label="At a glance"><div><strong>5,400</strong><span>HSK vocabulary entries</span></div><div><strong>1–6</strong><span>HSK levels, your selection</span></div><div><strong>3,071</strong><span>Words with offline examples</span></div><div><strong>100% free</strong><span>Open source, local data</span></div></section>
-    <section class="wrap section" id="features">
-      <p class="eyebrow">MAKE YOUR OWN STUDY RHYTHM</p><h2>Useful while you do other things.</h2>
-      <div class="grid">
-        <article><span class="feature-mark" aria-hidden="true">字</span><h3>Your words, your order</h3><p>Choose multiple HSK levels, set inclusive serial ranges and play sequentially or randomly without repeats within a cycle. Jump, pause, or go back.</p></article>
-        <article><span class="feature-mark" aria-hidden="true">◒</span><h3>Quietly counts down</h3><p>A smooth fill shows when the next word arrives. Choose your delay, font size, width, color preset and contrast. Toggle every text component.</p></article>
-        <article><span class="feature-mark" aria-hidden="true">☆</span><h3>More than a headword</h3><p>Read full meanings and available examples, search the library, save Favorites, copy text or open a dictionary. Reading pauses the timer.</p></article>
-        <article><span class="feature-mark" aria-hidden="true">↔</span><h3>Take your progress along</h3><p>Import UTF-8 CSV or TSV. Export words, settings, Favorites and playback progress in a version 1 backup compatible with both Mac and Windows.</p></article>
-      </div>
-    </section>
-    <section class="wrap section" id="alternatives">
-      <p class="eyebrow">FREE &amp; OPEN SOURCE</p><h2>An alternative for your Chinese study.</h2>
-      <p>CíBar is a free, open-source alternative to VocaBar PRO, Word Drop, Wunderbar and LingoBar for keeping Chinese vocabulary in view while you work. Mac is stable; Windows 11 is a preview.</p>
-      <div class="grid">
-        <article><h3><a href="https://apps.apple.com/us/app/vocabar-menubar-word-app/id6744346351">VocaBar / PRO</a></h3><p>Similar menu-bar word and meaning display, intervals, sequential/random playback and custom imports. VocaBar offers a limited free tier and a paid PRO unlock; CíBar includes its HSK library, serial ranges and backups for free.</p></article>
-        <article><h3><a href="https://apps.apple.com/us/app/word-drop-menu-bar/id6759536699">Word Drop</a></h3><p>A paid app with rotating vocabulary, Chinese support and example cards. CíBar focuses its bundled library on Chinese HSK levels 1–6 and also supports your own vocabulary.</p></article>
-        <article><h3><a href="https://wunderbarapp.com/">Wunderbar</a></h3><p>A paid menu-bar vocabulary app with examples and custom word lists. CíBar offers free sequential/random HSK review; Wunderbar's spaced repetition and audio pronunciation are not included in CíBar.</p></article>
-        <article><h3><a href="https://lingobar.net/">LingoBar</a></h3><p>A freemium menu-bar app with words, meanings, examples and custom vocabulary. CíBar is an offline, open-source option for Chinese HSK study; LingoBar also offers multiple learning languages and audio.</p></article>
-      </div>
-      <p class="small">Comparable vocabulary workflows, not complete feature parity. CíBar is independent and is not affiliated with these apps. App code is MIT-licensed; vocabulary and examples have separate licenses.</p>
-    </section>
-    <section class="download section" id="download"><div class="wrap">
-      <p class="eyebrow">ONE SMALL APP. NO MONTHLY BILL.</p><h2>Choose your computer.</h2>
-      <div class="downloads">
-        <article class="platform"><span class="badge">STABLE · 1.0.2</span><h3>Mac menu bar</h3><p>macOS 13 or later. Native Swift / AppKit. CíBar stays in the menu bar without a Dock icon.</p><a class="button primary" href="https://github.com/akashmahedy/CiBar/releases/download/v1.0.2/CiBar-Apple-Silicon.zip">Download for Apple Silicon</a><a class="text-link" href="https://github.com/akashmahedy/CiBar/releases/download/v1.0.2/CiBar-Intel.zip">Intel Mac download <span aria-hidden="true">↗</span></a><p class="small">Unzip, move CíBar to Applications, then open it. Locally signed; not Apple-notarized.</p></article>
-        <article class="platform"><span class="badge preview-badge">PREVIEW · 1.1.0-preview.1</span><h3>Windows taskbar pill</h3><p>Windows 11 on Intel/AMD x64. Native C++ / Win32. A movable pill sits just above the taskbar.</p><a class="button secondary" href="https://github.com/akashmahedy/CiBar/releases/download/v1.1.0-preview.1/CiBar-Windows-x64.zip">Download Windows preview</a><a class="text-link" href="https://github.com/akashmahedy/CiBar/blob/main/Windows/README.md">Windows install guide <span aria-hidden="true">↗</span></a><p class="small">Extract the entire ZIP; run CiBar.exe beside Resources. Unsigned preview. Windows 11 GUI and resource measurements remain pending.</p></article>
-      </div>
-      <p class="download-note">Default: HSK4 · sequential · 45 seconds · adaptive width capped at 260 · no seconds label.<br><a href="https://github.com/akashmahedy/CiBar/releases">Release notes, checksums and all downloads →</a></p>
+    <section class="facts-band" aria-label="At a glance"><div class="wrap facts">
+      <div><strong>5,400</strong><span>HSK vocabulary entries</span></div><div><strong>1-6</strong><span>HSK levels to choose from</span></div><div><strong>3,071</strong><span>Words with offline examples</span></div><div><strong>Free. Offline.</strong><span>Open source. No account or subscription.</span></div>
     </div></section>
-    <section class="wrap section details-section">
-      <div><p class="eyebrow">KNOW WHAT YOU ARE LEARNING</p><h2>HSK 3.0.<br>Sources included.</h2><p>The bundled list follows the <strong>2025 HSK 3.0 exam syllabus</strong>. Selecting only HSK4 gives its 1,000 new entries; choose levels 1–4 for all 2,000 entries through HSK4.</p><p>Headword order and numbering were checked against the official syllabus. This does not certify every translation. Most example Pinyin is automatic and labelled; polyphonic readings can need correction. Examples may illustrate a different sense.</p><a class="text-link" href="https://github.com/akashmahedy/CiBar/blob/main/docs/DATA.md">Vocabulary sources and review notes ↗</a></div>
-      <div class="faq"><details><summary>Does CíBar need an account or internet?</summary><p>No account is needed. Vocabulary, examples and progress stay locally. There are no background network requests or cloud sync; dictionary/source links open only when clicked.</p></details><details><summary>Can I use my own vocabulary?</summary><p>Yes. Import UTF-8 CSV/TSV with serial, hanzi, pinyin and english columns. Optional example columns are supported. See the user guide for the required format.</p></details><details><summary>Is the Windows version stable?</summary><p>It is a prerelease. Native build/core tests, Windows Server GUI smoke and compatibility with the actual Mac backup model have passed. Real Windows 11 GUI, scaling and five-minute resource tests remain pending. Windows 10 and ARM64 are unsupported.</p></details><details><summary>What licenses apply?</summary><p>App code and original assets use the MIT license. Vocabulary and examples have separate Creative Commons licenses. Attribution is bundled with the app; MIT does not relicense third-party data.</p></details></div>
+    <section class="wrap section features" id="features" aria-labelledby="features-heading">
+      <h2 id="features-heading">Your words.<br>Your study rhythm.</h2>
+      <p class="section-intro">Start with a small range. Choose what appears, how it looks and when the next word arrives.</p>
+      <div class="feature-layout">
+        <article class="feature-photo"><img src="assets/study-desk.webp" srcset="assets/study-desk-small.webp 600w, assets/study-desk.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 52vw, 646px" width="1200" height="800" alt="A quiet desk with a notebook, pencil and teal cup beside a laptop" loading="lazy" decoding="async"><div class="feature-copy"><h3>Your words, your order</h3><p>Choose multiple HSK levels and inclusive serial ranges. Play sequentially or randomly without repeats within a cycle. Jump, pause, or go back.</p></div></article>
+        <article class="feature-timer"><div><h3>A little room for Chinese</h3><p>A smooth fill shows when the next word arrives. Set the delay, font size, width, colors and contrast. Toggle every text component.</p></div><picture class="native-pill"><source srcset="assets/pill-dark.webp" media="(prefers-color-scheme: dark)"><img src="assets/pill-light.webp" alt="Actual native CíBar pill with a partially elapsed countdown" width="528" height="44" loading="lazy" decoding="async"></picture><p class="small">Small words take less space. Long text stops at your chosen width.</p></article>
+        <article class="feature-reading"><h3>More than a headword</h3><p>Open the full meaning and available examples. Search, save Favorites, copy or look up a word. The timer pauses while you read.</p><a href="https://github.com/akashmahedy/CiBar/blob/main/docs/DATA.md">See vocabulary sources</a></article>
+        <article class="feature-backup"><h3>Take your progress along</h3><p>Import UTF-8 CSV or TSV. A version 1 backup carries words, settings, Favorites and playback progress between Mac and Windows.</p><a href="https://github.com/akashmahedy/CiBar/blob/main/docs/USER-GUIDE.md">Mac guide</a></article>
+      </div>
     </section>
-    <section class="wrap closing"><span class="brand-icon" lang="zh">词</span><h2>Keep Chinese close.</h2><p>Start with a small range. Let the words become familiar.</p><a class="button primary" href="#download">Download CíBar</a></section>
+    <section class="demo-section section" aria-labelledby="demo-heading"><div class="wrap">
+      <h2 id="demo-heading">See the small things in action.</h2><p class="section-intro">Watch words rotate, the fill count down, and a click open a sourced example.</p>
+      <figure class="demo"><video controls playsinline preload="none" poster="assets/demo-poster.webp" width="1280" height="720" aria-label="25-second CíBar native UI demonstration" aria-describedby="demo-description"><source src="assets/demo.mp4" type="video/mp4"><p>Your browser cannot play this video. <a href="assets/demo.mp4">Download the demo video</a>.</p></video><figcaption id="demo-description">Native Mac UI demonstration, with shortened timing. No audio. <a href="#demo-transcript">Read the description</a></figcaption></figure>
+      <details class="demo-transcript" id="demo-transcript"><summary>Demo description</summary><p>The Mac pill displays HSK4 word 安排 (ānpái), meaning “to arrange; to plan.” The fill gradually shrinks. Opening the card shows “你明天的行程安排是什么？” with Pinyin, the English translation “What’s your schedule for tomorrow?”, attribution and playback controls. The card pauses the timer. Closing it continues playback, then the next word appears.</p></details>
+    </div></section>
+    <section class="wrap section alternatives" id="alternatives" aria-labelledby="alternatives-heading">
+      <h2 id="alternatives-heading">A free alternative for Chinese study.</h2>
+      <p class="section-intro">Considering VocaBar PRO, Word Drop, Wunderbar or LingoBar? CíBar keeps Chinese vocabulary in view, with its HSK library and backups included.</p>
+      <div class="comparison-table" role="region" aria-label="Vocabulary app comparison" tabindex="0"><table><caption>Comparable vocabulary workflows</caption><thead><tr><th scope="col">App</th><th scope="col">Its approach</th><th scope="col">CíBar’s approach</th></tr></thead><tbody>
+        <tr><th scope="row"><a href="https://apps.apple.com/us/app/vocabar-menubar-word-app/id6744346351">VocaBar / PRO</a></th><td>Menu-bar words, meanings, intervals and custom imports. Limited free tier with a paid PRO unlock.</td><td>HSK vocabulary, serial ranges, sequential/random playback and portable backups, included free.</td></tr>
+        <tr><th scope="row"><a href="https://apps.apple.com/us/app/word-drop-menu-bar/id6759536699">Word Drop</a></th><td>A paid app with rotating vocabulary, Chinese support and word cards.</td><td>A Chinese-focused HSK levels 1-6 library, with support for your own vocabulary.</td></tr>
+        <tr><th scope="row"><a href="https://wunderbarapp.com/">Wunderbar</a></th><td>A paid menu-bar app with examples, spaced repetition and audio. Chinese is not listed among its bundled languages.</td><td>Free sequential/random HSK review. Spaced repetition and audio pronunciation are not included.</td></tr>
+        <tr><th scope="row"><a href="https://lingobar.net/">LingoBar</a></th><td>A freemium app with examples, custom vocabulary and audio. Chinese is not listed among its 12 bundled languages.</td><td>Offline, open-source Chinese HSK study. A focused library rather than multiple learning languages or audio.</td></tr>
+      </tbody></table></div>
+      <p class="small legal">Comparable vocabulary workflows, not complete feature parity. CíBar is independent and is not affiliated with these apps. App code is MIT-licensed; vocabulary and examples have separate licenses.</p>
+    </section>
+    <section class="download section" id="download" aria-labelledby="download-heading"><div class="wrap">
+      <p class="eyebrow">No monthly bill</p><h2 id="download-heading">Choose your computer.</h2>
+      <div class="downloads">
+        <article class="platform mac"><span class="release-status">Mac stable · 1.0.2</span><h3>In your menu bar.</h3><p>macOS 13 or later. Native Swift / AppKit. CíBar stays in the menu bar without a Dock icon.</p><div class="platform-actions"><a class="button primary" href="https://github.com/akashmahedy/CiBar/releases/download/v1.0.2/CiBar-Apple-Silicon.zip">Download for Apple Silicon</a><a class="button secondary" href="https://github.com/akashmahedy/CiBar/releases/download/v1.0.2/CiBar-Intel.zip">Download for Intel Mac</a></div><p class="small">Unzip, move CíBar to Applications, then open it. Locally signed; not Apple-notarized.</p></article>
+        <article class="platform windows"><span class="release-status">Windows preview · 1.1.0-preview.1</span><h3>Above your taskbar.</h3><p>Windows 11 on Intel/AMD x64. Native C++ / Win32. A movable pill sits just above the taskbar.</p><div class="platform-actions"><a class="button secondary" href="https://github.com/akashmahedy/CiBar/releases/download/v1.1.0-preview.1/CiBar-Windows-x64.zip">Download Windows preview</a><a class="text-link" href="https://github.com/akashmahedy/CiBar/blob/main/Windows/README.md">Windows install guide</a></div><p class="small">Extract the entire ZIP; run CiBar.exe beside Resources. Unsigned preview. Windows 11 GUI and resource measurements remain pending.</p></article>
+      </div>
+      <div class="download-note"><p>Starts with HSK4 in sequential order, 45 seconds per word and an adaptive width capped at 260. No seconds label.</p><a href="https://github.com/akashmahedy/CiBar/releases">Release notes, checksums and all downloads</a></div>
+    </div></section>
+    <section class="wrap section sources" aria-labelledby="sources-heading">
+      <div class="source-copy"><h2 id="sources-heading">HSK 3.0.<br>Sources included.</h2><p>The bundled list follows the <strong>2025 HSK 3.0 exam syllabus</strong>. Selecting only HSK4 gives its 1,000 new entries; choose levels 1-4 for all 2,000 entries through HSK4.</p><p>Headword order and numbering were checked against the official syllabus. This does not certify every translation. Most example Pinyin is automatic and labelled; polyphonic readings can need correction. Examples may illustrate a different sense.</p><a href="https://github.com/akashmahedy/CiBar/blob/main/docs/DATA.md">Vocabulary sources and review notes</a></div>
+      <div class="faq"><h3>Good to know.</h3><details><summary>Does CíBar need an account or internet?</summary><p>No account is needed. Vocabulary, examples and progress stay locally. There are no background network requests or cloud sync; dictionary/source links open only when clicked.</p></details><details><summary>Can I use my own vocabulary?</summary><p>Yes. Import UTF-8 CSV/TSV with serial, hanzi, pinyin and english columns. Optional example columns are supported. See the user guide for the required format.</p></details><details><summary>Is the Windows version stable?</summary><p>It is a prerelease. Native build/core tests, Windows Server GUI smoke and compatibility with the actual Mac backup model have passed. Real Windows 11 GUI, scaling and five-minute resource tests remain pending. Windows 10 and ARM64 are unsupported.</p></details><details><summary>What licenses apply?</summary><p>App code and original assets use the MIT license. Vocabulary and examples have separate Creative Commons licenses. Attribution is bundled with the app; MIT does not relicense third-party data.</p></details></div>
+    </section>
+    <section class="wrap closing" aria-labelledby="closing-heading"><h2 id="closing-heading">Keep Chinese close.</h2><p>Start with a small range. Let the words become familiar.</p><a class="button primary" href="#download">Download</a></section>
   </main>
-  <footer class="wrap"><p>Created by <strong>Akash Mahedy</strong> · <a href="https://github.com/akashmahedy">@akashmahedy</a></p><div><a href="https://github.com/akashmahedy/CiBar/blob/main/docs/USER-GUIDE.md">Mac guide</a><a href="https://github.com/akashmahedy/CiBar/blob/main/Resources/ATTRIBUTIONS.txt">Attribution</a><a href="https://github.com/akashmahedy/CiBar/issues">Report an issue</a></div></footer>
+  <footer class="wrap"><div class="credit"><p>Created by <strong>Akash Mahedy</strong> · <a href="https://github.com/akashmahedy">@akashmahedy</a></p><p>Built with AI assistance, with human direction and review.</p></div><div class="footer-links"><a href="https://github.com/akashmahedy/CiBar/blob/main/docs/USER-GUIDE.md">Mac guide</a><a href="https://github.com/akashmahedy/CiBar/blob/main/Resources/ATTRIBUTIONS.txt">Attribution</a><a href="https://github.com/akashmahedy/CiBar/issues">Report an issue</a><label class="theme-control">Appearance <select id="theme" aria-label="Website appearance"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div></footer>
 </body>
 </html>
